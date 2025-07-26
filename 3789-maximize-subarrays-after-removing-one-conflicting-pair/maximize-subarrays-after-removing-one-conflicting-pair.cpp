@@ -1,3 +1,4 @@
+#define ALL(x) *max_element(begin(extra), end(extra))
 class Solution {
 public:
     long long maxSubarrays(int n, vector<vector<int>>& conflictingPairs) {
@@ -32,6 +33,6 @@ public:
             extra[maxConflict] += maxConflict - secondMaxConflict;
         }
 
-        return valid + *max_element(begin(extra), end(extra));
+        return valid + ALL(extra);
     }
 };
