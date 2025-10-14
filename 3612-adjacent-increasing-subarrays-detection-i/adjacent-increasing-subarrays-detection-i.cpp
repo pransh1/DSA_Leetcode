@@ -29,7 +29,7 @@ public:
 
     bool hasIncreasingSubarrays(vector<int>& nums, int k) {
         int n = nums.size();
-         if (n < 2 * k) return false;
+        //  if (n < 2 * k) return false;
         for(int i=0; i<nums.size(); i++) {
             
             if(isIncrease(nums, i, k) && isIncrease(nums, i+k, k)) {
