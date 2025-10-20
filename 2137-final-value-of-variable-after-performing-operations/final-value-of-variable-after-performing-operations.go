@@ -1,8 +1,8 @@
 func finalValueAfterOperations(o []string) int {
     var x int = 0
 
-    for i := range o {
-        if o[i] == "X++" || o[i]== "++X" {
+    for _, val := range o {
+        if val == "X++" || val == "++X" {
             x++
         } else {
             x--;
