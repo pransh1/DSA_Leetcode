@@ -28,7 +28,7 @@ public:
         // rotten oranges
         while(!q.empty()) {
             int size = q.size();
-            bool changed = false;
+            // bool changed = false;
             for(int k = 0; k<size; k++) {
                 auto [x, y] = q.front();
                 q.pop();
@@ -43,12 +43,13 @@ public:
                     // convert it to 2
                     grid[nx][ny] = 2;
                     fresh--;
-                    changed = true;
+                    // changed = true;
                     q.push({nx, ny});
                 }
             }
-            if(changed) time++;
+            // if(changed) time++;
+            time++;
         }
-        return fresh == 0 ? time : -1;
+        return fresh == 0 ? time - 1 : -1;
     }
 };
