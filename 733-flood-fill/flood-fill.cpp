@@ -23,10 +23,15 @@ public:
                 int nx = x + dir[0];
                 int ny = y + dir[1];
 
-                if(nx >= 0 && ny >= 0 && nx < n && ny < m && image[nx][ny] == startColor) {
-                    image[nx][ny] = color;
-                    q.push({nx, ny});
+                if(nx < 0 || nx >= n || ny < 0 || ny >= m || image[nx][ny] != startColor) {
+                    continue;
                 }
+                image[nx][ny] = color;
+                q.push({nx, ny});
+                // if(nx >= 0 && ny >= 0 && nx < n && ny < m && image[nx][ny] == startColor) {
+                //     image[nx][ny] = color;
+                //     q.push({nx, ny});
+                // }
             }
         }
         return image;
