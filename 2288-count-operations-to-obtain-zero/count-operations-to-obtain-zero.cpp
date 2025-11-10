@@ -5,12 +5,11 @@ public:
         while(num1 != 0 && num2 != 0) {
             if(num1 >= num2) {
                 num1 -= num2;
-                ops++;
             }
             else {
                 num2 -= num1;
-                ops++;
             }
+            ops++;
         }
         return ops;    
     }
