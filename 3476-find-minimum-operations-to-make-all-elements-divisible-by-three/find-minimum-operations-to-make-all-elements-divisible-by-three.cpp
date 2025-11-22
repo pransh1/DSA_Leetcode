@@ -9,7 +9,8 @@ public:
             if(nums[i] % 3 != 0) {
                 ops++;
             }
-            // if all val from the array is divisible by 3 just continue and at the return 0
+            // if all val from the array is divisible by 3 just continue and at the return 0 cauz no 
+            // ops were needed
         }
         return ops;
     }
