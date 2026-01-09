@@ -11,34 +11,37 @@
  */
 class Solution {
 public:
-    // Returns:
-    // 1) maximum depth below this node
-    // 2) smallest subtree containing all deepest nodes
-    pair<int, TreeNode*> dfs(TreeNode* root) {
-        // Base case
-        if (!root) {
-            return {0, nullptr};
+    int maxDepth = 0;
+
+    // Step 1: find maximum depth
+    int findDepth(TreeNode* root) {
+        if (!root) return 0;
+        return 1 + max(findDepth(root->left), findDepth(root->right));
+    }
+
+    // Step 2: LCA-style recursion
+    TreeNode* dfs(TreeNode* root, int depth) {
+        if (!root) return nullptr;
+
+        // If this node is at deepest level
+        if (depth == maxDepth) {
+            return root;
         }
 
-        // Recurse on children
-        auto left = dfs(root->left);
-        auto right = dfs(root->right);
+        TreeNode* left = dfs(root->left, depth + 1);
+        TreeNode* right = dfs(root->right, depth + 1);
 
-        // If left subtree is deeper
-        if (left.first > right.first) {
-            return {left.first + 1, left.second};
+        // If deepest nodes are found in both subtrees
+        if (left && right) {
+            return root;   // this is the LCA
         }
 
-        // If right subtree is deeper
-        if (right.first > left.first) {
-            return {right.first + 1, right.second};
-        }
-
-        // Equal depth → this node is LCA of deepest nodes
-        return {left.first + 1, root};
+        // Else propagate non-null child upward
+        return left ? left : right;
     }
 
     TreeNode* subtreeWithAllDeepest(TreeNode* root) {
-        return dfs(root).second;
+        maxDepth = findDepth(root);
+        return dfs(root, 1);
     }
 };
